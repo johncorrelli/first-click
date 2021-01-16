@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/create');
 });
+
+Route::get('/claim/{claimId}', 'App\Http\Controllers\ClaimController@checkClaim');
+Route::get('/claim/{claimId}/take', 'App\Http\Controllers\ClaimController@takeClaim');
+
+Route::get('/create', 'App\Http\Controllers\ClaimController@createClaimForm');
+Route::post('/create/save', 'App\Http\Controllers\ClaimController@createClaim');

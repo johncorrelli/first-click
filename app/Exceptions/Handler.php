@@ -36,5 +36,13 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
+        $this->renderable(function (ClaimNotFoundException $e, $request) {
+            return response()->view('claim-not-found', ['copy' => $e->getMessage()]);
+        });
+
+        $this->renderable(function (ClaimTakenException $e, $request) {
+            return response()->view('claim-taken', ['copy' => $e->getMessage()]);
+        });
     }
 }
