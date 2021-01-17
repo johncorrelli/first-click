@@ -1,0 +1,16 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('spec')
+    ->exclude('vendor')
+    ->exclude('database/migrations')
+    ->exclude('storage')
+    ->exclude('config')
+    ->exclude('bootstrap/cache')
+    ->in(__DIR__);
+
+$config = PhpCsFixer\Config::create()
+    ->setFinder($finder)
+;
+
+return $config;
