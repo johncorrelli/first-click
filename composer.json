@@ -53,6 +53,8 @@
     "scripts": {
         "analyze": "./vendor/bin/phpstan analyse",
         "fix": "./vendor/bin/php-cs-fixer fix",
+        "start": "./vendor/bin/sail up -d",
+        "stop": "./vendor/bin/sail down",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
