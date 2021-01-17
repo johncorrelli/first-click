@@ -1,10 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "johncorrelli/first-click",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Give away awards to the first person to take your claim.",
     "keywords": [
-        "framework",
-        "laravel"
+        "awards",
+        "claim",
+        "take"
     ],
     "license": "MIT",
     "require": {
