@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 
-<form method='post' action='./save'>
+<form method='post' action='/create/save'>
 @csrf
 
 <h2>Winning Text:</h2>
