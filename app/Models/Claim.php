@@ -24,6 +24,7 @@ class Claim extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'max_claims',
         'successful_claim_text',
         'unsuccessful_claim_text',
     ];
