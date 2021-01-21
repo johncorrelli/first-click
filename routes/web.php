@@ -17,8 +17,8 @@ Route::get('/', function () {
     return redirect('/create');
 });
 
-Route::get('/claim/{claimId}', 'App\Http\Controllers\ClaimController@checkClaim');
-Route::get('/claim/{claimId}/take', 'App\Http\Controllers\ClaimController@takeClaim');
+Route::get('/claim/{claimId}', 'App\Http\Controllers\TakeClaimController@checkClaim');
+Route::get('/claim/{claimId}/take', 'App\Http\Controllers\TakeClaimController@takeClaim');
 
-Route::get('/create', 'App\Http\Controllers\ClaimController@createClaimForm');
-Route::post('/create/save', 'App\Http\Controllers\ClaimController@createClaim');
+Route::get('/create', 'App\Http\Controllers\CreateClaimController@createClaimForm');
+Route::post('/create/save', 'App\Http\Controllers\CreateClaimController@createClaim');
