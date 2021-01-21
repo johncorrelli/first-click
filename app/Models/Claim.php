@@ -7,6 +7,16 @@ use Illuminate\Support\Str;
 use App\Traits\UuidTrait;
 use Carbon\Carbon;
 
+/**
+ * @property string $id
+ * @property int $number_of_claims
+ * @property int $max_claims
+ * @property string $date_claimed
+ * @property string $successful_claim_text
+ * @property string $unsuccessful_claim_text
+ * @property string $created_at
+ * @property string $updated_at
+ */
 class Claim extends Model
 {
     use UuidTrait;
@@ -27,15 +37,22 @@ class Claim extends Model
 
     public function claim(): self
     {
-        $this->setClaimed(true);
+        $currentClaims = $this->getNumberOfClaims();
+
+        $this->setNumberOfClaims(++$currentClaims);
         $this->setDateClaimed(Carbon::now());
 
         return $this;
     }
 
-    public function getIsClaimed(): bool
+    public function getNumberOfClaims(): int
     {
-        return $this->is_claimed;
+        return $this->number_of_claims;
+    }
+
+    public function isClaimable(): bool
+    {
+        return $this->number_of_claims < $this->max_claims;
     }
 
     public function getSuccessfulText(): string
@@ -48,9 +65,9 @@ class Claim extends Model
         return $this->unsuccessful_claim_text;
     }
 
-    protected function setClaimed(bool $isClaimed): self
+    protected function setNumberOfClaims(int $nextClaims): self
     {
-        $this->is_claimed = $isClaimed;
+        $this->number_of_claims = $nextClaims;
 
         return $this;
     }
