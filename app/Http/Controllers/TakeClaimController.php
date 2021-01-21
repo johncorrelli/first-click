@@ -39,7 +39,7 @@ class TakeClaimController extends Controller
             throw new ClaimNotFoundException("{$claimId} was not found!");
         }
 
-        if (true === $claim->getIsClaimed()) {
+        if (false === $claim->isClaimable()) {
             throw new ClaimTakenException($claim->getUnsuccessfulText());
         }
 

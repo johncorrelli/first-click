@@ -16,10 +16,12 @@ class CreateClaimController extends Controller
 
     public function createClaim(): View
     {
+        $maxClaims = request()->get('max_claims');
         $successfulText = request()->get('successful_claim_text');
         $unsuccessfulText = request()->get('unsuccessful_claim_text');
 
         $newClaim = Claim::create([
+            'max_claims' => $maxClaims,
             'successful_claim_text' => $successfulText,
             'unsuccessful_claim_text' => $unsuccessfulText,
         ]);
