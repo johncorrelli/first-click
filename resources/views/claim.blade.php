@@ -1,10 +1,9 @@
 @extends('master')
-@section('jumbotron-class', 'jumbotron__success')
+@section('bg-color', 'bg-success')
+@section('progress-bar-class', 'progress-bar')
+@section('h1', 'Victory!')
 @section('content')
 
-<h1>You did it!</h1>
-<p>You've won! Can you believe it?</p>
-
-<pre class="alert alert-success">{{ $copy ?? '' }}</pre>
+<pre class="alert alert-dark text-left text-lg">{{ $copy ?? '' }}</pre>
 
 @endsection

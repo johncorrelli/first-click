@@ -1,10 +1,9 @@
 @extends('master')
-@section('jumbotron-class', 'jumbotron__failed')
+@section('bg-color', 'bg-danger')
+@section('h1', 'Sorry!')
+@section('progress-bar-class', 'progress-bar-striped')
 @section('content')
 
-<h1>Well this stinks!</h1>
-<p>Looks like someone got here first.</p>
-
-<pre class="alert alert-warning">{{ $copy ?? '' }}</pre>
+<pre class="alert alert-dark text-left text-lg">{{ $copy ?? '' }}</pre>
 
 @endsection

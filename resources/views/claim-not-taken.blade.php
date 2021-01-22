@@ -1,15 +1,12 @@
 @extends('master')
-@section('jumbotron-class', 'jumbotron__success')
+@section('bg-color', 'bg-secondary')
+@section('progress-bar-class', 'progress-bar-striped progress-bar-animated')
 @section('content')
 
-<div>
-<h1>Almost there...</h1>
-<p>This claim is still available, click the button below to take what's yours!</p>
 <p>
-    <a href="/claim/{{ $claimId }}/take">
-        <button type="button" class="btn btn-primary btn-lg">Click here to claim!</button>
+    <a class="btn btn-success btn-large" href="/claim/{{ $claimId }}/take">
+        Claim what's yours!
     </a>
 </p>
 
 @endsection
-

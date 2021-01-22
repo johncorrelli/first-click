@@ -1,4 +1,7 @@
 @extends('master')
+@section('bg-color', 'bg-light')
+@section('no-vertical-center', 'no-vertical-center')
+@section('progress-bar-class', 'text-dark')
 @section('content')
 
 <form method='post' action='/create/save'>
@@ -20,7 +23,9 @@
     <textarea name='unsuccessful_claim_text' cols="50" rows="10">Sorry, this has already been claimed!</textarea>
 </div>
 
-<div><input type="submit" class="button button-primary" value="Create Claim" /></div>
+<div>
+    <button type="submit" class="btn btn-success btn-large">Create Claim</button>
+</div>
 </form>
 
 @endsection

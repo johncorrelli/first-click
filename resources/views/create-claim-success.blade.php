@@ -1,11 +1,16 @@
 @extends('master')
-@section('jumbotron-class', 'jumbotron__success')
+@section('bg-color', 'bg-light')
+@section('progress-bar-class', 'text-dark')
+@section('h1', 'Success!')
 @section('content')
 
-<h1>Almost there!</h1>
-<p>You just need to share your "Claim" and let people compete for the treasure!</p>
+<p>
+    Your claim was successfully created! To view your claim, click the button below.
+    Don't worry, it will not take the claim.
+</p>
 
-<p class="alert alert-success"><a href='/claim/{{ $claimId }}'>Go to claim</a></p>
-<p><i>don't worry - it won't take the claim.</i></p>
+<p>
+    <a class="btn btn-large btn-success" href='/claim/{{ $claimId }}'>View Claim</a>
+</p>
 
 @endsection

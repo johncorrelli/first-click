@@ -5,19 +5,26 @@
         <title>First Click</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="/app.css" />
     </head>
     <body class="antialiased">
 
-    <div class="jumbotron jumbotron-fluid vertical-center text-center @yield('jumbotron-class' ?? '')">
+    <div class="backdrop progress">
+        <div class="progress-bar @yield('progress-bar-class', '') @yield('bg-color', '')" style="width: 100%"></div>
+    </div>
+
+    <div class="main-content @yield('no-vertical-center', 'vertical-center') text-center">
         <div class="container">
-        @yield('content')
+            <h1 class="display-3 text-center">@yield('h1', '')</h1>
+            <div class="text-center">
+                @yield('content')
+            </div>
         </div>
     </div>
 
-    <footer class="footer text-center">
-        <a href="/create">Create a claim</a>
+    <footer class="footer text-right @yield('bg-color', '')">
+        <a class="text-light" href="/create">Create a claim</a>
     </footer>
     </body>
 </html>
