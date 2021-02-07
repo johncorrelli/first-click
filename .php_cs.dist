@@ -10,6 +10,13 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__);
 
 $config = PhpCsFixer\Config::create()
+    ->setRules([
+        '@PHP80Migration' => true,
+        '@PhpCsFixer' => true,
+        '@Symfony' => true,
+        'phpdoc_to_comment' => false,
+        'phpdoc_no_empty_return' => false,
+    ])
     ->setFinder($finder)
 ;
 

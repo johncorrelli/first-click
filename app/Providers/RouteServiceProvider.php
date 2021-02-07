@@ -30,8 +30,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -41,11 +39,13 @@ class RouteServiceProvider extends ServiceProvider
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/api.php'));
+                ->group(base_path('routes/api.php'))
+            ;
 
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/web.php'));
+                ->group(base_path('routes/web.php'))
+            ;
         });
     }
 
