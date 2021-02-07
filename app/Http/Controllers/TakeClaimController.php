@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Claim;
 use App\Exceptions\ClaimNotFoundException;
-use App\Exceptions\ClaimTakenException;
+use App\Models\Claim;
 use Illuminate\Contracts\View\View;
 
 class TakeClaimController extends Controller
@@ -13,19 +12,22 @@ class TakeClaimController extends Controller
     {
         $claim = $this->getClaim($claimId);
 
-        return view('claim-not-taken')
-            ->with('claimId', $claim->getKey());
+        return view('claim-landing')
+            ->with('claimId', $claim->getKey())
+        ;
     }
 
     public function takeClaim(string $claimId): View
     {
         $claim = $this->getClaim($claimId);
+        $prize = $claim->getCurrentPrize();
 
-        $claim->claim()->save();
+        $prize->take()->save();
 
-        return view('claim')
-            ->with('claimId', $claim->getKey())
-            ->with('copy', $claim->getSuccessfulText());
+        return view('claim-prize')
+            ->with('header', $prize->getHeaderText())
+            ->with('text', $prize->getBodyText())
+        ;
     }
 
     protected function getClaim(string $claimId): Claim
@@ -37,10 +39,6 @@ class TakeClaimController extends Controller
 
         if (null === $claim) {
             throw new ClaimNotFoundException("{$claimId} was not found!");
-        }
-
-        if (false === $claim->isClaimable()) {
-            throw new ClaimTakenException($claim->getUnsuccessfulText());
         }
 
         return $claim;

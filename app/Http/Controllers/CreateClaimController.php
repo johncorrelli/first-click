@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Claim;
-use App\Exceptions\ClaimNotFoundException;
-use App\Exceptions\ClaimTakenException;
+use App\Models\ClaimPrize;
 use Illuminate\Contracts\View\View;
 
 class CreateClaimController extends Controller
@@ -20,13 +19,26 @@ class CreateClaimController extends Controller
         $successfulText = request()->get('successful_claim_text');
         $unsuccessfulText = request()->get('unsuccessful_claim_text');
 
-        $newClaim = Claim::create([
-            'max_claims' => $maxClaims,
-            'successful_claim_text' => $successfulText,
-            'unsuccessful_claim_text' => $unsuccessfulText,
+        $newClaim = Claim::create([]);
+
+        ClaimPrize::create([
+            'claim_id' => $newClaim->id,
+            'claim_order' => 1,
+            'claims_allowed' => $maxClaims,
+            'text_header' => 'Congratulations!',
+            'text_body' => $successfulText,
+        ]);
+
+        ClaimPrize::create([
+            'claim_id' => $newClaim->id,
+            'claim_order' => 2,
+            'claims_allowed' => 0,
+            'text_header' => 'Sorry!',
+            'text_body' => $unsuccessfulText,
         ]);
 
         return view('create-claim-success')
-            ->with('claimId', $newClaim->getKey());
+            ->with('claimId', $newClaim->id)
+        ;
     }
 }
