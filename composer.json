@@ -52,7 +52,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "analyze": "./vendor/bin/phpstan analyse",
+        "analyze": "./vendor/bin/phpstan analyse --memory-limit 2G",
         "fix": "./vendor/bin/php-cs-fixer fix",
         "start": "./vendor/bin/sail up -d",
         "stop": "./vendor/bin/sail down",
