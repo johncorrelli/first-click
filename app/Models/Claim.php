@@ -20,16 +20,14 @@ class Claim extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'max_claims',
-        'successful_claim_text',
-        'unsuccessful_claim_text',
+        'is_public',
     ];
 
     /**
      * @var array<string>
      */
     protected $casts = [
-        'is_claimed' => 'bool',
+        'is_public' => 'bool',
     ];
 
     public function prizes(): HasMany
@@ -66,5 +64,10 @@ class Claim extends Model
          * @var ClaimPrize
          */
         return $availablePrizes->first();
+    }
+
+    public function getIsPublic(): bool
+    {
+        return $this->is_public;
     }
 }

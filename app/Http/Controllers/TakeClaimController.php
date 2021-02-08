@@ -37,7 +37,7 @@ class TakeClaimController extends Controller
          */
         $claim = Claim::find($claimId);
 
-        if (null === $claim) {
+        if (null === $claim || !$claim->getIsPublic()) {
             throw new ClaimNotFoundException("{$claimId} was not found!");
         }
 
