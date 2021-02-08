@@ -22,3 +22,5 @@ Route::post('/claim/{claimId}/take', 'App\Http\Controllers\TakeClaimController@t
 
 Route::get('/create', 'App\Http\Controllers\CreateClaimController@createClaimForm');
 Route::post('/create/save', 'App\Http\Controllers\CreateClaimController@createClaim');
+Route::post('/create/save-prize', 'App\Http\Controllers\CreateClaimController@createClaimPrize');
+Route::post('/create/finalize-claim', 'App\Http\Controllers\CreateClaimController@finalizeClaim');
