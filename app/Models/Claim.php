@@ -2,18 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use App\Exceptions\ClaimNotFoundException;
 use App\Traits\UuidTrait;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property string $id
- * @property int $number_of_claims
- * @property int $max_claims
- * @property string $date_claimed
- * @property string $successful_claim_text
- * @property string $unsuccessful_claim_text
  * @property string $created_at
  * @property string $updated_at
  */
@@ -24,59 +20,54 @@ class Claim extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'max_claims',
-        'successful_claim_text',
-        'unsuccessful_claim_text',
+        'is_public',
     ];
 
     /**
      * @var array<string>
      */
     protected $casts = [
-        'is_claimed' => 'bool',
+        'is_public' => 'bool',
     ];
 
-    public function claim(): self
+    public function prizes(): HasMany
     {
-        $currentClaims = $this->getNumberOfClaims();
-
-        $this->setNumberOfClaims(++$currentClaims);
-        $this->setDateClaimed(Carbon::now());
-
-        return $this;
+        return $this->hasMany(ClaimPrize::class);
     }
 
-    public function getNumberOfClaims(): int
+    public function getCurrentPrize(): ClaimPrize
     {
-        return $this->number_of_claims;
+        /**
+         * @var Collection<ClaimPrize>
+         */
+        $prizes = $this->prizes->sortBy('claim_order');
+
+        if ($prizes->isEmpty()) {
+            throw new ClaimNotFoundException();
+        }
+
+        /**
+         * @var Collection<ClaimPrize>
+         */
+        $availablePrizes = $prizes->filter(
+            fn (ClaimPrize $prize) => $prize->getClaimsTaken() < $prize->getClaimsAllowed()
+        );
+
+        if ($availablePrizes->isEmpty()) {
+            /**
+             * @var ClaimPrize
+             */
+            return $prizes->last();
+        }
+
+        /**
+         * @var ClaimPrize
+         */
+        return $availablePrizes->first();
     }
 
-    public function isClaimable(): bool
+    public function getIsPublic(): bool
     {
-        return $this->number_of_claims < $this->max_claims;
-    }
-
-    public function getSuccessfulText(): string
-    {
-        return $this->successful_claim_text;
-    }
-
-    public function getUnsuccessfulText(): string
-    {
-        return $this->unsuccessful_claim_text;
-    }
-
-    protected function setNumberOfClaims(int $nextClaims): self
-    {
-        $this->number_of_claims = $nextClaims;
-
-        return $this;
-    }
-
-    protected function setDateClaimed(Carbon $date): self
-    {
-        $this->date_claimed = $date;
-
-        return $this;
+        return $this->is_public;
     }
 }
