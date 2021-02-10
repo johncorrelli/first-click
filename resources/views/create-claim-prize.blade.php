@@ -25,15 +25,18 @@
     <textarea name='text_body' cols="50" rows="10">Congrats you won!</textarea>
 </div>
 
-<div><input type="submit" class="button button-primary" value="Create Prize" /></div>
+<div><input type="submit" class="btn btn-primary" value="Create Prize" /></div>
 </form>
 
 <div>
 
+<br />
+<br />
+
 <form method='post' action='/create/finalize-claim'>
 @csrf
 <input type="hidden" name="claim_id" value="{{ $claimId ?? '' }}" />
-<input type="submit" class="button button-primary" value="Finalize Claim" />
+<input type="submit" class="btn btn-success" value="Finalize Claim" />
 </form>
 
 </div>
