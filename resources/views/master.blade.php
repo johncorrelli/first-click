@@ -15,9 +15,5 @@
         @yield('content')
         </div>
     </div>
-
-    <footer class="footer text-center">
-        <a href="/create">Create a claim</a>
-    </footer>
     </body>
 </html>
