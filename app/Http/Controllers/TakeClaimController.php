@@ -26,7 +26,7 @@ class TakeClaimController extends Controller
 
         return view('claim-prize')
             ->with('header', $prize->getHeaderText())
-            ->with('text', $prize->getBodyText())
+            ->with('text', $prize->getBodyHtml())
         ;
     }
 

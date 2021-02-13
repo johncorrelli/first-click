@@ -4,7 +4,9 @@
 
 <h1>{{ $header ?? '' }}</h1>
 
-<pre class="alert alert-light">{{ $text ?? '' }}</pre>
+<div>
+{!! $text ?? '' !!}
+</div>
 
 @endsection
 
