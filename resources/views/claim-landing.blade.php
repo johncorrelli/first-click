@@ -3,10 +3,9 @@
 @section('content')
 
 <p>
-    <form method="post" action="/claim/{{ $claimId }}/take">
-        @csrf
+    <a href="/claim/{{ $claimId }}/take">
         <button type="submit" class="btn btn-primary btn-lg">Click to see if you've won!</button>
-    </form>
+    </a>
 </p>
 
 @endsection
