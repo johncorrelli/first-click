@@ -20,6 +20,9 @@ class Claim extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'company_name',
+        'company_logo',
+        'take_claim_text',
         'is_public',
     ];
 
@@ -64,6 +67,21 @@ class Claim extends Model
          * @var ClaimPrize
          */
         return $availablePrizes->first();
+    }
+
+    public function getCompanyName(): ?string
+    {
+        return $this->company_name;
+    }
+
+    public function getCompanyLogo(): ?string
+    {
+        return $this->company_logo;
+    }
+
+    public function getTakeClaimText(): string
+    {
+        return $this->take_claim_text ?? "Click to see if you've won!";
     }
 
     public function getIsPublic(): bool

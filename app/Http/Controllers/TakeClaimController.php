@@ -13,6 +13,9 @@ class TakeClaimController extends Controller
         $claim = $this->getClaim($claimId);
 
         return view('claim-landing')
+            ->with('companyName', $claim->getCompanyName())
+            ->with('companyLogo', $claim->getCompanyLogo())
+            ->with('takeClaimText', $claim->getTakeClaimText())
             ->with('claimId', $claim->getKey())
         ;
     }
@@ -25,6 +28,8 @@ class TakeClaimController extends Controller
         $prize->take()->save();
 
         return view('claim-prize')
+            ->with('companyName', $claim->getCompanyName())
+            ->with('companyLogo', $claim->getCompanyLogo())
             ->with('header', $prize->getHeaderText())
             ->with('text', $prize->getBodyHtml())
         ;
