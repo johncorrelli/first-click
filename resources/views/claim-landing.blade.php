@@ -1,10 +1,9 @@
 @extends('master')
-@section('jumbotron-class', 'jumbotron__success')
 @section('content')
 
-<p>
+<p class="check-claim text-center">
     <a href="/claim/{{ $claimId }}/take">
-        <button type="submit" class="btn btn-primary btn-lg">Click to see if you've won!</button>
+        <button type="submit" class="btn btn-primary btn-lg">{{ $takeClaimText }}</button>
     </a>
 </p>
 
