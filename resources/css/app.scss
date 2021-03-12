@@ -1,0 +1,97 @@
+@import 'github-markdown-css';
+
+$baseUnit: 4px;
+
+// sizes
+$breakPoint: 767px;
+
+// fonts
+$fontFamily: 'Open Sans', Sans-serif;
+$fontSize: $baseUnit * 4;
+$bold: 900;
+
+// colors
+$white: #fff;
+$black: #000;
+
+html, body {
+  background: $black;
+  color: $white;
+  box-sizing: border-box;
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  height: 100%;
+  width: 100%;
+}
+
+input[type=text], input[type=number], textarea {
+  color: $black;
+}
+
+.header {
+  $headerHeight: $baseUnit * 20;
+  border-bottom: 1px $white solid;
+  padding-bottom: 1px;
+  display: flex;
+  align-items: center;
+
+  .company {
+    &-logo {
+      float: left;
+      padding-right: $baseUnit * 3;
+      vertical-align: middle;
+
+      &__pic {
+        max-height: $headerHeight;
+        max-width: $baseUnit * 50;
+      }
+    }
+
+    &-name {
+      font-size: $headerHeight / 3;
+      font-weight: bold;
+      line-height: $headerHeight;
+      overflow: hidden;
+      text-align: left;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+.main-content {
+  width: 100%;
+
+  .check-claim {
+    margin-top: $baseUnit * 12;
+  }
+}
+
+.prize-title {
+  font-weight: $bold;
+  font-size: $fontSize + $baseUnit;
+  padding: $baseUnit * 2;
+}
+
+.markdown-body {
+  background: $white;
+  border-radius: $baseUnit * 2;
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: $baseUnit * 11;
+  text-align: left;
+}
+
+@media (max-width: $breakPoint) {
+  .prize-title {
+    font-size: $fontSize * 1.25;
+  }
+
+  .markdown-body {
+    padding: $baseUnit * 4;
+  }
+}
+

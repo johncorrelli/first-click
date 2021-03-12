@@ -16,7 +16,16 @@ class CreateClaimController extends Controller
 
     public function createClaim(): View
     {
-        $newClaim = Claim::create(['is_public' => false]);
+        $companyName = request()->get('company_name');
+        $companyLogo = request()->get('company_logo');
+        $takeClaimText = request()->get('take_claim_text') ?? "Click to see if you've won!";
+
+        $newClaim = Claim::create([
+            'company_name' => $companyName,
+            'company_logo' => $companyLogo,
+            'take_claim_text' => $takeClaimText,
+            'is_public' => false,
+        ]);
 
         return $this->returnUpdatedClaim($newClaim);
     }
@@ -77,6 +86,8 @@ class CreateClaimController extends Controller
 
         return view('create-claim-prize')
             ->with('claimId', $claim->getKey())
+            ->with('companyName', $claim->getCompanyName())
+            ->with('companyLogo', $claim->getCompanyLogo())
             ->with('prizes', $claim->prizes->sortBy('claim_order'))
         ;
     }

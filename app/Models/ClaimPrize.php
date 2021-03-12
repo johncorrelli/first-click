@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Parsedown;
 
 /**
  * @property string $id
@@ -47,6 +48,13 @@ class ClaimPrize extends Model
     public function getBodyText(): string
     {
         return $this->text_body;
+    }
+
+    public function getBodyHtml(): string
+    {
+        $parse = new Parsedown();
+
+        return $parse->text($this->getBodyText());
     }
 
     public function take(): self

@@ -1,5 +1,4 @@
 @extends('master')
-@section('jumbotron-class', 'jumbotron__failed')
 @section('content')
 
 <div>

@@ -1,10 +1,13 @@
 @extends('master')
-@section('jumbotron-class', 'jumbotron__success')
 @section('content')
 
-<h1>{{ $header ?? '' }}</h1>
+<div class="p-3">
+    <h1 class="prize-title text-center">{{ $header ?? '' }}</h1>
 
-<pre class="alert alert-light">{{ $text ?? '' }}</pre>
+    <div class="markdown-body">
+    {!! $text ?? '' !!}
+    </div>
+</div>
 
 @endsection
 
